@@ -21,7 +21,8 @@ public class KennethRomero {
         Random rand = new Random();
         
         byte opc,contin,cont0=0,cont=7,cont2=1;
-        int num,num2,z,n;
+        int num,num2,n2,sig,nfeliz,og,pasos,temp,sum,dig;
+        double z, cos=0, pot=1, fact;
         do {
             contin=1;
         System.out.println("");
@@ -92,12 +93,83 @@ public class KennethRomero {
                     if (z>10 || z<-10) {
                         System.out.println("Numero invalido vuelva a ingresar los numeros.");
                     }
-                    System.out.println("Ingrese el nivel de aproximacion (1 a 50):");
-                    n=leer.nextInt();
+                    System.out.print("Ingrese el nivel de aproximacion (1 a 50):");
+                    n2=leer.nextInt();
                     System.out.println("");
-                    if (n<1 || n>50) {
+                    if (n2<1 || n2>50) {
                         System.out.println("Numero invalido vuelva a ingresar los numeros.");
                     }
+                    for (int n = 0; n < n2; n++) {
+                        pot=1;
+                        fact=1;
+                        for (int i = 1; i <= 2*n; i++) {
+                            pot *= z;
+                            
+                        }
+                        fact = 1;
+                        for (int i = 1; i <= 2 * n; i++) {
+                            fact *= i;
+                        }
+                        
+                        if(n % 2 == 0) {
+                        sig=1;
+                        }else {
+                        sig=-1;
+                        }
+                        cos += sig* (pot / fact);
+                    }
+                    System.out.println("Aproximacion de cos("+z+") con un nivel de "+n2+" es: " +cos);
+
+                     //aca solo es para comprobarlo asi como decia en la guia asiq lo que entendi esq en este caso si lo podiamos usar
+                    System.out.println("Valor real calculando la funcion: " + Math.cos(z));
+                    System.out.println("");
+                    System.out.print("Si no deseas ingresar otros valores presiona 0:");
+                    contin=leer.nextByte();
+                } while (contin!=0);
+                
+            }else if (opc==3) {
+                System.out.println("");
+                System.out.println("Opcion 3 - Numero Feliz");
+                System.out.println("");
+                do {
+                    System.out.print("Ingresa tu numero a probar:");
+                    nfeliz=leer.nextInt();
+                    if (nfeliz==0) {
+                        System.out.println("");
+                        System.out.println("El numero no puede ser 0");
+                    }
+                    while (nfeliz <= 0);
+
+                    og = nfeliz;
+                    pasos = 0;
+
+                    System.out.print(og);
+                    while (nfeliz!=1 && nfeliz!=4){
+                    
+                    sum = 0;
+                    temp = nfeliz;
+                    
+                    while (temp > 0) {
+
+                    dig = temp % 10;
+                    sum += dig * dig;
+                    temp /= 10;
+
+                    }
+                    nfeliz =sum;
+                    pasos++;
+                    System.out.println("->"+nfeliz);
+                    System.out.println("");
+                    }
+                    if (nfeliz==1) {
+                        System.out.println("El numero "+og+" es un numero felizz! ("+pasos+")");
+                        
+                    }else{
+                        System.out.println("El numero "+og+" es un numero infeliz! ("+pasos+")");
+                    }
+                    System.out.println("");
+                    System.out.print("Si no desea continuar presione 0");
+                    contin=leer.nextByte();
                     
                 } while (contin!=0);
                 
