@@ -20,14 +20,14 @@ public class KennethRomero {
         Scanner leer = new Scanner(System.in);
         Random rand = new Random();
         
-        byte opc,contin,cont0=0,cont=7,cont2=1;
+        byte opc,contin,cont0=0,cont=7,cont2=1,vdd=0;
         int num,num2,n2,sig,nfeliz,og,pasos,temp,sum,dig;
         double z, cos=0, pot=1, fact;
         do {
             contin=1;
         System.out.println("");
         System.out.println("_________________________________________________");
-        System.out.println("Lab 3");
+        System.out.println("                 Menu del Lab 3");
         System.out.println("_________________________________________________");
         System.out.println("");
         System.out.println("0)- Salir.");
@@ -45,6 +45,7 @@ public class KennethRomero {
         
             System.out.print("Ingrese su opcion (0-3):");
             opc=leer.nextByte();
+            System.out.println("_________________________________________________");
             
             if (opc==1) {
                 do {
@@ -76,8 +77,9 @@ public class KennethRomero {
                      System.out.println("El numero era:"+num);
                      System.out.println("");
                     }
+                    System.out.println("_________________________________________________________________________________");
                     System.out.println("");
-                    System.out.print("Si no desea continuar presione 0:");
+                    System.out.print("Si no desea continuar presione 0, en caso de q si presione cualquier otro numero:");
                     contin=leer.nextByte();
                     System.out.println("");
                      
@@ -87,6 +89,9 @@ public class KennethRomero {
                 System.out.println("Opcion 2 - Aproximacion de coseno.");
                 System.out.println("");
                 do {
+                    do {
+                    cos=0;
+                    sig=0;
                     System.out.print("Ingrese el anuglo en radianes (entre -10 y 10):");
                     z=leer.nextInt();
                     System.out.println("");
@@ -96,9 +101,15 @@ public class KennethRomero {
                     System.out.print("Ingrese el nivel de aproximacion (1 a 50):");
                     n2=leer.nextInt();
                     System.out.println("");
-                    if (n2<1 || n2>50) {
-                        System.out.println("Numero invalido vuelva a ingresar los numeros.");
-                    }
+                        if (n2<1 && n2<50 ) {
+                            vdd=1;
+                        }else if (n2>1 && n2<50) {
+                            vdd=0;
+                        }
+                        System.out.println("Numero invalido vuelva a ingresar los numeros acorde a los rangos dichos.");
+                        System.out.println("");
+                    } while (vdd==1);    
+                    
                     for (int n = 0; n < n2; n++) {
                         pot=1;
                         fact=1;
@@ -119,12 +130,15 @@ public class KennethRomero {
                         cos += sig* (pot / fact);
                     }
                     System.out.println("Aproximacion de cos("+z+") con un nivel de "+n2+" es: " +cos);
+                    System.out.println("");
 
                      //aca solo es para comprobarlo asi como decia en la guia asiq lo que entendi esq en este caso si lo podiamos usar
                     System.out.println("Valor real calculando la funcion: " + Math.cos(z));
+                    System.out.println("_________________________________________________________________________________");
                     System.out.println("");
-                    System.out.print("Si no deseas ingresar otros valores presiona 0:");
+                    System.out.print("Si no desea continuar presione 0, en caso de q si presione cualquier otro numero:");
                     contin=leer.nextByte();
+                    System.out.println("");
                 } while (contin!=0);
                 
             }else if (opc==3) {
@@ -158,18 +172,21 @@ public class KennethRomero {
                     }
                     nfeliz =sum;
                     pasos++;
-                    System.out.println("->"+nfeliz);
-                    System.out.println("");
+                    System.out.print(" -> "+nfeliz);
+                    System.out.print("");
                     }
+                    System.out.println("");
                     if (nfeliz==1) {
-                        System.out.println("El numero "+og+" es un numero felizz! ("+pasos+")");
+                        System.out.println("El numero "+og+" es un numero felizz! ("+pasos+" pasos)");
                         
                     }else{
-                        System.out.println("El numero "+og+" es un numero infeliz! ("+pasos+")");
+                        System.out.println("El numero "+og+" es un numero infeliz! ("+pasos+" pasos)");
                     }
+                    System.out.println("_________________________________________________________________________________");
                     System.out.println("");
-                    System.out.print("Si no desea continuar presione 0");
+                    System.out.print("Si no desea continuar presione 0, en caso de q si presione cualquier otro numero:");
                     contin=leer.nextByte();
+                    System.out.println("");
                     
                 } while (contin!=0);
                 
